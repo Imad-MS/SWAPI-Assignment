@@ -35,18 +35,20 @@ public class GET_Test {
 
         List<String> allTallChars = null;
 
-        try{
-            allTallChars = jsonPath.getList("results.findAll { Integer.parseInt(it.height) > 200 }.name");
-        } catch(IllegalArgumentException e){}
-
-        for(int i = 2; i < 10; i++){
+        for(int i = 1; i < 10; i++){
             response = get("https://swapi.dev/api/people/?page=" + String.valueOf(i));
             rsp = response.asString();
             jsonPath = new JsonPath(rsp);
-            try{
-                allTallChars.addAll(jsonPath.getList("results.findAll { Integer.parseInt(it.height) > 200 }.name"));
-                //allTallChars = jsonPath.getList("results.findAll { Integer.parseInt(it.height) > 200 }.name");
-            } catch(IllegalArgumentException e){}
+
+            if(allTallChars == null){
+                try{
+                    allTallChars = jsonPath.getList("results.findAll { Integer.parseInt(it.height) > 200 }.name");
+                } catch(IllegalArgumentException e){}
+            } else {
+                try{
+                    allTallChars.addAll(jsonPath.getList("results.findAll { Integer.parseInt(it.height) > 200 }.name"));
+                } catch(IllegalArgumentException e){}
+            }
 
         }
         List<String> expectedList = new ArrayList<String>();
@@ -69,18 +71,20 @@ public class GET_Test {
 
         List<String> allTallChars = null;
 
-        try{
-            allTallChars = jsonPath.getList("results.findAll { Integer.parseInt(it.height) > 200 }.name");
-        } catch(IllegalArgumentException e){}
-
-        for(int i = 2; i < 10; i++){
+        for(int i = 1; i < 10; i++){
             response = get("https://swapi.dev/api/people/?page=" + String.valueOf(i));
             rsp = response.asString();
             jsonPath = new JsonPath(rsp);
-            try{
-                allTallChars.addAll(jsonPath.getList("results.findAll { Integer.parseInt(it.height) > 200 }.name"));
-                //allTallChars = jsonPath.getList("results.findAll { Integer.parseInt(it.height) > 200 }.name");
-            } catch(IllegalArgumentException e){}
+
+            if(allTallChars == null){
+                try{
+                    allTallChars = jsonPath.getList("results.findAll { Integer.parseInt(it.height) > 200 }.name");
+                } catch(IllegalArgumentException e){}
+            } else {
+                try{
+                    allTallChars.addAll(jsonPath.getList("results.findAll { Integer.parseInt(it.height) > 200 }.name"));
+                } catch(IllegalArgumentException e){}
+            }
 
         }
 
